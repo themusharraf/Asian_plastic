@@ -1,0 +1,112 @@
+{% extends 'en/base.html' %}
+{% load static %}
+{% block connect %}
+    <div class="container-fluid bg-primary py-5 " style="margin-bottom: 90px;background-image: url({% static 'suka.jpg' %})">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Product Detail</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">Product Detail</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3"
+                               placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- Blog Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <!-- Blog Detail Start -->
+                    <div class="mb-5">
+                        <img class="img-fluid w-100 rounded mb-5" src="{{ product.images.url }}" alt="">
+                        <h1 class="mb-4">{{ product.title }}</h1>
+                        <p>{{ product.text }}</p>
+                        <img class="img-fluid w-100 rounded mb-5" src="{{ product.two_images.url }}" alt="">
+
+                    </div>
+                    <!-- Blog Detail End -->
+
+
+                </div>
+
+                <!-- Sidebar Start -->
+                <div class="col-lg-4">
+                    <!-- Recent Post Start -->
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="mb-0">Recent Post</h3>
+                        </div>
+                        {% for i in prok %}
+                        <div class="d-flex rounded overflow-hidden mb-3">
+                            <img class="img-fluid" src="{{ i.images.url }}"
+                                 style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                            <a href="{% url 'product' i.id %}" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">{{ i.title }}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Recent Post End -->
+
+                    <!-- Tags Start -->
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="mb-0">Tag Cloud</h3>
+                        </div>
+                        <div class="d-flex flex-wrap m-n1">
+                            {% for i in prok %}
+                            <a href="{% url 'product' i.id %}" class="btn btn-light m-1">{{ i.title }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+                <!-- Sidebar End -->
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5 mb-5">
+            <div class="bg-white">
+                <div class="owl-carousel vendor-carousel">
+                    <img src="img/vendor-1.jpg" alt="">
+                    <img src="img/vendor-2.jpg" alt="">
+                    <img src="img/vendor-3.jpg" alt="">
+                    <img src="img/vendor-4.jpg" alt="">
+                    <img src="img/vendor-5.jpg" alt="">
+                    <img src="img/vendor-6.jpg" alt="">
+                    <img src="img/vendor-7.jpg" alt="">
+                    <img src="img/vendor-8.jpg" alt="">
+                    <img src="img/vendor-9.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+{% endblock %}
